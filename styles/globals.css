@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-   --body-bg-based-on-theme: #fff;
+   --body-bg-based-on-theme: rgb(243, 235, 235);
 }
 
 html,
