@@ -16,7 +16,7 @@ const Layout: React.FC = ({ children }) => {
    }, [title]);
 
    return (
-      <div className="dark:text-white h-screen overflow-hidden flex">
+      <div className="dark:text-gray-700 h-screen overflow-hidden flex">
          <aside className="bg-red-900 shrink-0 w-[256px]">Aside</aside>
          <div className="grow h-full">
             <div className="h-full overflow-hidden flex flex-col">
