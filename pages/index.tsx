@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
+import Layout from '../components/Layout';
 
 const Home: NextPage = () => {
-   return <div className="w-10 bg-red-200">hello</div>;
+   return <Layout>asd</Layout>;
 };
 
 export default Home;
