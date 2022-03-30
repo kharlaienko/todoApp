@@ -4,6 +4,7 @@
 
 :root {
    --body-bg-based-on-theme: rgb(243, 235, 235);
+   --autofill-color: black;
 }
 
 html,
@@ -17,7 +18,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
    :root {
-      --body-bg-based-on-theme: rgb(15 23 42);
+      --body-bg-based-on-theme: #262626;
+      --autofill-color: rgb(229, 231, 235);
    }
 }
 
@@ -28,4 +30,21 @@ a {
 
 * {
    box-sizing: border-box;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill::first-line,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+   /* Font setting from  input */
+   color: var(--autofill-color) !important;
+   -webkit-box-shadow: none;
+   transition: background-color 5000s ease-in-out 0s;
+   -webkit-text-fill-color: inherit;
 }
