@@ -1,5 +1,5 @@
-import { AuthRegisterDTO } from './types';
-import { instance } from './index';
+import { AuthLoginDTO, AuthRegisterDTO } from './types';
+import { Axios } from './index';
 
 export interface AuthResponse {
    access_token: string;
@@ -7,12 +7,12 @@ export interface AuthResponse {
 
 export const AuthApi = {
    async register(dto: AuthRegisterDTO): Promise<AuthResponse> {
-      const { data } = await instance.post('auth/register', dto);
+      const { data } = await Axios.post('auth/register', dto);
       return data;
    },
 
    async login(dto: AuthLoginDTO): Promise<AuthResponse> {
-      const { data } = await instance.post('auth/login', dto);
+      const { data } = await Axios.post('auth/login', dto);
       return data;
    },
 };

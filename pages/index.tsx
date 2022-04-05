@@ -1,5 +1,10 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult, NextPage } from 'next';
+import { AppContext } from 'next/app';
+import nookies from 'nookies';
+import { config } from 'process';
 import Layout from '../components/Layout';
+import { Axios } from '../utils/api';
+import { AuthApi } from '../utils/api/auth';
 
 const Home: NextPage = () => {
    return (
@@ -732,6 +737,33 @@ const Home: NextPage = () => {
          </p>
       </Layout>
    );
+};
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+   const token = nookies.get(context)['token'];
+   if (!token) {
+      return {
+         redirect: {
+            permanent: false,
+            destination: '/login',
+         },
+         props: {},
+      };
+   }
+   let res: any;
+   try {
+      Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+
+      res = await Axios.get('todos');
+   } catch (e) {
+      console.log(e);
+   }
+
+   console.log(res.data);
+
+   return {
+      props: {},
+   };
 };
 
 export default Home;

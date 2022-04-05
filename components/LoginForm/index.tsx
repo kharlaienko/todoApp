@@ -35,8 +35,10 @@ const LoginForm: React.FC = () => {
          response = await AuthApi.login(data);
          setCookie(null, 'token', response.access_token);
          router.push('/');
-      } catch (e) {
-         console.log('addhgdsjgfd', e);
+      } catch (e: any) {
+         if (e?.response?.data?.statusCode === 401) {
+            alert('Wrong credentials');
+         }
       } finally {
          setIsLoading(false);
       }
@@ -58,11 +60,7 @@ const LoginForm: React.FC = () => {
             type={'password'}
          />
 
-         <Button
-            isLoading={isLoading}
-            className={'mt-4 align-center ml-auto block bg-red'}
-            onClick={() => console.log(123)}
-         >
+         <Button isLoading={isLoading} className={'mt-4 align-center ml-auto block bg-red'}>
             Login
          </Button>
       </form>
